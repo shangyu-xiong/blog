@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>熊镜上羽 · 博客</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -22,8 +22,13 @@
       </ul>
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
-          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
         </button>
         <button class="nav-toggle" id="navToggle" aria-label="菜单">
           <span></span><span></span><span></span>
@@ -42,15 +47,32 @@
     <div class="container hero-content">
       <span class="hero-badge">🍃 最近更新 · 2026</span>
       <h1 class="hero-title">NeverSettle</h1>
-      <p class="hero-desc">关于技术、设计与生活的碎片整理。偶尔写写代码，<br>偶尔停下来看云。</p>
+      <p class="hero-desc">面对不断进化的AI Agent<br />被替代还是掌控</p>
       <div class="hero-actions">
         <a href="#blog" class="btn btn-primary">浏览文章</a>
         <a href="#about" class="btn btn-outline">了解更多</a>
       </div>
       <div class="hero-social">
-        <a href="#" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-        <a href="#" aria-label="Twitter / X"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="#" aria-label="Bilibili"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.558 3.76v7.36c-.034 1.51-.554 2.769-1.558 3.773s-2.262 1.524-3.773 1.558H5.333c-1.51-.034-2.769-.554-3.773-1.558S.036 18.858.002 17.347v-7.36c.034-1.511.554-2.77 1.558-3.773S3.822 4.69 5.333 4.653h.854l-1.28-1.28a1.117 1.117 0 01-.31-.832c.021-.312.197-.578.529-.8.332-.222.645-.31.938-.266.293.044.565.188.816.432l1.92 1.746h6.4l1.92-1.746a1.223 1.223 0 01.816-.432c.293-.044.606.044.938.266.332.222.508.488.53.8a1.117 1.117 0 01-.311.832l-1.28 1.28zm-12.48 1.92c-.905 0-1.695.319-2.37.955-.675.637-1.016 1.423-1.023 2.357v7.36c.007.934.348 1.72 1.023 2.357.675.636 1.465.955 2.37.955h13.334c.905 0 1.695-.319 2.37-.955.675-.637 1.016-1.423 1.023-2.357v-7.36c-.007-.934-.348-1.72-1.023-2.357-.675-.636-1.465-.955-2.37-.955zM8.37 12.96c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144zm7.36 0c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144z"/></svg></a>
+        <a href="https://github.com/shangyu-xiong" target="_blank" aria-label="GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://x.com/shangyuxiong" target="_blank" aria-label="Twitter / X">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+        <a href="https://space.bilibili.com/167339425" target="_blank" aria-label="Bilibili">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.558 3.76v7.36c-.034 1.51-.554 2.769-1.558 3.773s-2.262 1.524-3.773 1.558H5.333c-1.51-.034-2.769-.554-3.773-1.558S.036 18.858.002 17.347v-7.36c.034-1.511.554-2.77 1.558-3.773S3.822 4.69 5.333 4.653h.854l-1.28-1.28a1.117 1.117 0 01-.31-.832c.021-.312.197-.578.529-.8.332-.222.645-.31.938-.266.293.044.565.188.816.432l1.92 1.746h6.4l1.92-1.746a1.223 1.223 0 01.816-.432c.293-.044.606.044.938.266.332.222.508.488.53.8a1.117 1.117 0 01-.311.832l-1.28 1.28zm-12.48 1.92c-.905 0-1.695.319-2.37.955-.675.637-1.016 1.423-1.023 2.357v7.36c.007.934.348 1.72 1.023 2.357.675.636 1.465.955 2.37.955h13.334c.905 0 1.695-.319 2.37-.955.675-.637 1.016-1.423 1.023-2.357v-7.36c-.007-.934-.348-1.72-1.023-2.357-.675-.636-1.465-.955-2.37-.955zM8.37 12.96c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144zm7.36 0c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144z" />
+          </svg>
+        </a>
+        <a href="#" id="wechatBtn" aria-label="微信公众号">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.691 2C4.665 2 1.5 4.592 1.5 7.825c0 1.997 1.248 3.782 3.137 4.898l-.79 2.422 2.877-1.538c.756.21 1.555.338 2.382.366a8.487 8.487 0 01-.043-.523c0-3.531 2.888-6.96 6.431-8.28C14.277 2.786 11.69 2 8.691 2m9.895 6.175C14.915 8.175 12 10.613 12 13.756c0 3.144 2.915 5.581 6.586 5.581.773 0 1.516-.13 2.207-.327l2.015 1.077-.544-1.688c1.35-.94 2.236-2.388 2.236-4.02.001-3.144-2.915-5.582-6.586-5.582m-6.586 1.6c.63 0 1.14.482 1.14 1.076 0 .594-.51 1.076-1.14 1.076-.628 0-1.14-.482-1.14-1.076 0-.594.512-1.076 1.14-1.076m4.828 0c.629 0 1.14.482 1.14 1.076 0 .594-.511 1.076-1.14 1.076-.628 0-1.14-.482-1.14-1.076 0-.594.512-1.076 1.14-1.076" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -65,7 +87,6 @@
       </div>
 
       <div class="blog-grid">
-
         <article class="blog-card" data-delay="0">
           <div class="card-tag">技术</div>
           <div class="card-body">
@@ -73,6 +94,10 @@
             <h3 class="card-title">用 CSS Container Queries 构建真正 responsive 的组件</h3>
             <p class="card-excerpt">Container Queries 让我们终于可以基于容器尺寸而非视口来调整样式。这篇文章聊聊实际项目中的应用和踩坑记录。</p>
             <a href="#" class="card-link">阅读全文 →</a>
+            <div class="card-links">
+              <a href="#" title="微信公众号" class="card-platform wechat">💬</a>
+              <a href="#" title="知乎" class="card-platform">📝</a>
+            </div>
           </div>
         </article>
 
@@ -125,7 +150,6 @@
             <a href="#" class="card-link">阅读全文 →</a>
           </div>
         </article>
-
       </div>
 
       <div class="section-footer">
@@ -139,29 +163,27 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image" data-delay="0">
-          <div class="about-avatar">
-            <span>熊</span>
-          </div>
+          <img class="about-avatar" src="images/me.jpg" alt="头像" />
         </div>
         <div class="about-text" data-delay="1">
           <span class="section-label">ABOUT</span>
           <h2 class="section-title">关于我</h2>
-          <p>我是熊镜上羽，一名前端开发者和设计爱好者。目前在杭州做 Web 开发，业余时间喜欢拍照、散步、听音乐。</p>
+          <p>我是熊镜上羽，一位正在不断努力跟进智能体时代步伐的追随者。目前在大学学习。</p>
           <p>这个博客记录我的一些想法和学习笔记，希望能对你有所启发。如果有什么想聊的，欢迎给我留言。</p>
           <div class="about-skills">
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">摄影</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">LaTeX</span>
+            <span class="skill-tag">智能体</span>
+            <span class="skill-tag">览尽世间景</span>
+            <span class="skill-tag">未来</span>
+            <span class="skill-tag">保持思考</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== CONTACT / NEWSLETTER ========== -->
+  <!-- ========== CONTACT ========== -->
   <section class="section" id="contact">
     <div class="container">
       <div class="contact-card">
@@ -170,7 +192,7 @@
           <p class="contact-desc">如果我的文章对你有帮助，或者只是想打个招呼，欢迎发邮件给我。</p>
           <form class="contact-form" id="contactForm">
             <div class="form-group">
-              <input type="email" class="form-input" placeholder="你的邮箱地址" required>
+              <input type="email" class="form-input" placeholder="你的邮箱地址" required />
               <button type="submit" class="btn btn-primary form-btn">订阅</button>
             </div>
             <p class="form-note">不定期发送，不会 spam，随时可退订。</p>
@@ -183,15 +205,26 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container footer-content">
-      <p class="footer-copy">© 2026 熊镜上羽 · 用 ❤️ 和 ☕ 打造</p>
+      <p class="footer-copy">© 2026 熊镜上羽 · 一次与AI Agent的第一次合作</p>
       <div class="footer-links">
-        <a href="#">GitHub</a>
-        <a href="#">Twitter / X</a>
-        <a href="#">Bilibili</a>
+        <a href="https://github.com/shangyu-xiong" target="_blank">GitHub</a>
+        <a href="https://x.com/shangyuxiong" target="_blank">Twitter / X</a>
+        <a href="https://space.bilibili.com/167339425" target="_blank">Bilibili</a>
+        <a href="#" id="wechatFooterBtn">公众号</a>
         <a href="#">RSS</a>
       </div>
     </div>
   </footer>
+
+  <!-- ========== WECHAT MODAL ========== -->
+  <div class="modal-overlay" id="wechatModal">
+    <div class="modal-content">
+      <button class="modal-close" id="wechatModalClose">&times;</button>
+      <h3 class="modal-title">上羽的树屋</h3>
+      <p class="modal-desc">微信扫码关注公众号</p>
+      <img class="modal-qr" src="images/wxQRcode.jpg" alt="公众号二维码" />
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

@@ -397,6 +397,22 @@ img { max-width: 100%; display: block; }
   gap: 4px;
 }
 .card-link:hover { gap: 8px; }
+.card-links {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--card-border);
+}
+.card-platform {
+  font-size: .8rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  transition: opacity .25s;
+}
+.card-platform:hover { opacity: .7; }
 
 /* ============================================
    ABOUT
@@ -422,15 +438,10 @@ img { max-width: 100%; display: block; }
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #a855f7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 5rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 auto;
+  object-fit: cover;
   box-shadow: 0 20px 60px rgba(79,110,247,.25);
+  display: block;
+  margin: 0 auto;
 }
 .about-text p {
   color: var(--text);
@@ -507,6 +518,70 @@ img { max-width: 100%; display: block; }
   font-size: .8rem;
   color: var(--muted);
   margin-top: 12px;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-content {
+  background: var(--bg);
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background .2s;
+}
+.modal-close:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 8px;
+}
+.modal-desc {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.modal-qr {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  margin: 0 auto;
 }
 
 /* ============================================

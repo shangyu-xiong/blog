@@ -105,3 +105,27 @@ if (form) {
     }, 2000);
   });
 }
+
+/* ============================================
+   WECHAT MODAL
+   ============================================ */
+const wechatModal = document.getElementById('wechatModal');
+const wechatBtns = document.querySelectorAll('#wechatBtn, #wechatFooterBtn');
+const wechatClose = document.getElementById('wechatModalClose');
+
+wechatBtns.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    wechatModal.classList.add('open');
+  });
+});
+
+wechatClose.addEventListener('click', () => {
+  wechatModal.classList.remove('open');
+});
+
+wechatModal.addEventListener('click', e => {
+  if (e.target === wechatModal) {
+    wechatModal.classList.remove('open');
+  }
+});
