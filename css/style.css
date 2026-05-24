@@ -462,6 +462,21 @@ img { max-width: 100%; display: block; }
   background: var(--tag-bg);
   color: var(--tag-color);
 }
+.about-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: .9rem;
+  color: var(--primary);
+}
+.about-contact a {
+  color: var(--primary);
+  transition: opacity .25s;
+}
+.about-contact a:hover {
+  opacity: .7;
+}
 
 /* ============================================
    CONTACT
@@ -486,7 +501,18 @@ img { max-width: 100%; display: block; }
 }
 .contact-desc {
   color: var(--muted);
-  margin-bottom: 32px;
+  margin-bottom: 8px;
+}
+.contact-email {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 28px;
+  transition: opacity .25s;
+}
+.contact-email:hover {
+  opacity: .7;
 }
 .contact-form .form-group {
   display: flex;
