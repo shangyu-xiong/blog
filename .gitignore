@@ -1,3 +1,13 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# 照片原图（体积大，只把压好的 WebP 提交进 images/travel/）
+photos/
+
+# 工具产生的临时/依赖文件
+tools/_vendor/
+tools/_preview/
+tools/_wheels/
+__pycache__/
+node_modules/

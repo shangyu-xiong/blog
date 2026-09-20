@@ -1,331 +1,424 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="熊镜上羽的个人博客：AI Agent、代码、项目与旅途的记录。"
+    />
     <title>熊镜上羽 · 博客</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- 首屏标题用的字重，先加载避免闪一下 -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="fonts/inter-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <!-- 旅行相册清单由 tools/build_photos.py 生成，须在 main.js 之前加载 -->
+    <script src="data/travel-data.js" defer></script>
+    <script src="js/main.js" defer></script>
   </head>
   <body>
-    <!-- ========== NAV ========== -->
-    <header class="nav-wrapper">
-      <nav class="nav container">
-        <a href="#" class="nav-logo">熊镜上羽</a>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" class="nav-link active">首页</a></li>
-          <li><a href="#blog" class="nav-link">文章</a></li>
-          <li><a href="#about" class="nav-link">关于</a></li>
-          <li><a href="#contact" class="nav-link">联系</a></li>
-        </ul>
-        <div class="nav-actions">
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="切换深色模式"
-          >
-            <svg
-              class="sun-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <path
-                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-              />
-            </svg>
-            <svg
-              class="moon-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-            </svg>
-          </button>
-          <button class="nav-toggle" id="navToggle" aria-label="菜单">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+    <a class="skip-link" href="#home">跳到内容</a>
+
+    <!-- ========== LEFT RAIL (desktop) ========== -->
+    <aside class="rail">
+      <a class="rail-brand" href="#home">
+        <span class="rail-brand-name">熊镜上羽</span>
+        <span class="rail-brand-sub">NeverSettle</span>
+      </a>
+
+      <nav class="rail-nav" aria-label="章节导航">
+        <span class="rail-indicator" aria-hidden="true"></span>
+        <a class="rail-link is-active" href="#home" data-nav="home"
+          ><span class="rail-num">01</span><span class="rail-label">开始</span></a
+        >
+        <a class="rail-link" href="#about" data-nav="about"
+          ><span class="rail-num">02</span><span class="rail-label">关于</span></a
+        >
+        <a class="rail-link" href="#projects" data-nav="projects"
+          ><span class="rail-num">03</span><span class="rail-label">项目</span></a
+        >
+        <a class="rail-link" href="#writing" data-nav="writing"
+          ><span class="rail-num">04</span><span class="rail-label">文章</span></a
+        >
+        <a class="rail-link" href="#travel" data-nav="travel"
+          ><span class="rail-num">05</span><span class="rail-label">旅行</span></a
+        >
+        <a class="rail-link" href="#contact" data-nav="contact"
+          ><span class="rail-num">06</span><span class="rail-label">联系</span></a
+        >
       </nav>
+
+      <div class="rail-foot">
+        <button class="rail-theme" id="themeToggle" aria-label="切换主题">
+          <svg
+            class="ico-sun"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="4.2" />
+            <path
+              d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"
+            />
+          </svg>
+          <svg
+            class="ico-moon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M20.5 14.6A8.6 8.6 0 019.4 3.5a8.6 8.6 0 1011.1 11.1z" />
+          </svg>
+          <span class="rail-theme-label" id="themeLabel">浅色</span>
+        </button>
+      </div>
+
+      <span class="rail-progress" id="railProgress" aria-hidden="true"></span>
+    </aside>
+
+    <!-- ========== TOP BAR (mobile) ========== -->
+    <header class="topbar">
+      <a class="topbar-brand" href="#home">熊镜上羽</a>
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="菜单"
+        aria-expanded="false"
+      >
+        <span></span><span></span>
+      </button>
     </header>
 
-    <!-- ========== HERO ========== -->
-    <section class="hero" id="home">
-      <div class="hero-bg">
-        <div class="hero-blob blob-1"></div>
-        <div class="hero-blob blob-2"></div>
-        <div class="hero-blob blob-3"></div>
-      </div>
-      <div class="container hero-content">
-        <span class="hero-badge">🍃 最近更新 · 2026</span>
-        <h1 class="hero-title">NeverSettle</h1>
-        <p class="hero-desc">面对不断进化的AI Agent<br />被替代还是掌控</p>
-        <div class="hero-actions">
-          <a href="#blog" class="btn btn-primary">浏览文章</a>
-          <a href="#about" class="btn btn-outline">了解更多</a>
-        </div>
-        <div class="hero-social">
-          <a
-            href="https://github.com/shangyu-xiong"
-            target="_blank"
-            aria-label="GitHub"
+    <div class="drawer" id="drawer" hidden>
+      <nav class="drawer-nav" aria-label="章节导航">
+        <a href="#home" data-nav="home">开始</a>
+        <a href="#about" data-nav="about">关于</a>
+        <a href="#projects" data-nav="projects">项目</a>
+        <a href="#writing" data-nav="writing">文章</a>
+        <a href="#travel" data-nav="travel">旅行</a>
+        <a href="#contact" data-nav="contact">联系</a>
+      </nav>
+      <div class="drawer-foot">
+        <span class="drawer-note">熊镜上羽 · NeverSettle</span>
+        <button class="icon-btn" id="themeToggleMobile" aria-label="切换主题">
+          <svg
+            class="ico-sun"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://x.com/shangyuxiong"
-            target="_blank"
-            aria-label="Twitter / X"
+            <circle cx="12" cy="12" r="4.2" />
+            <path
+              d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"
+            />
+          </svg>
+          <svg
+            class="ico-moon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://space.bilibili.com/167339425"
-            target="_blank"
-            aria-label="Bilibili"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.558 3.76v7.36c-.034 1.51-.554 2.769-1.558 3.773s-2.262 1.524-3.773 1.558H5.333c-1.51-.034-2.769-.554-3.773-1.558S.036 18.858.002 17.347v-7.36c.034-1.511.554-2.77 1.558-3.773S3.822 4.69 5.333 4.653h.854l-1.28-1.28a1.117 1.117 0 01-.31-.832c.021-.312.197-.578.529-.8.332-.222.645-.31.938-.266.293.044.565.188.816.432l1.92 1.746h6.4l1.92-1.746a1.223 1.223 0 01.816-.432c.293-.044.606.044.938.266.332.222.508.488.53.8a1.117 1.117 0 01-.311.832l-1.28 1.28zm-12.48 1.92c-.905 0-1.695.319-2.37.955-.675.637-1.016 1.423-1.023 2.357v7.36c.007.934.348 1.72 1.023 2.357.675.636 1.465.955 2.37.955h13.334c.905 0 1.695-.319 2.37-.955.675-.637 1.016-1.423 1.023-2.357v-7.36c-.007-.934-.348-1.72-1.023-2.357-.675-.636-1.465-.955-2.37-.955zM8.37 12.96c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144zm7.36 0c.128 0 .251.048.368.144.117.096.176.213.176.352v1.28c0 .139-.059.256-.176.352a.565.565 0 01-.368.144.565.565 0 01-.368-.144.496.496 0 01-.176-.352v-1.28c0-.139.059-.256.176-.352a.565.565 0 01.368-.144z"
-              />
-            </svg>
-          </a>
-          <a href="#" id="wechatBtn" aria-label="微信公众号">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M8.691 2C4.665 2 1.5 4.592 1.5 7.825c0 1.997 1.248 3.782 3.137 4.898l-.79 2.422 2.877-1.538c.756.21 1.555.338 2.382.366a8.487 8.487 0 01-.043-.523c0-3.531 2.888-6.96 6.431-8.28C14.277 2.786 11.69 2 8.691 2m9.895 6.175C14.915 8.175 12 10.613 12 13.756c0 3.144 2.915 5.581 6.586 5.581.773 0 1.516-.13 2.207-.327l2.015 1.077-.544-1.688c1.35-.94 2.236-2.388 2.236-4.02.001-3.144-2.915-5.582-6.586-5.582m-6.586 1.6c.63 0 1.14.482 1.14 1.076 0 .594-.51 1.076-1.14 1.076-.628 0-1.14-.482-1.14-1.076 0-.594.512-1.076 1.14-1.076m4.828 0c.629 0 1.14.482 1.14 1.076 0 .594-.511 1.076-1.14 1.076-.628 0-1.14-.482-1.14-1.076 0-.594.512-1.076 1.14-1.076"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== BLOG ========== -->
-    <section class="section" id="blog">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">BLOG</span>
-          <h2 class="section-title">最新文章</h2>
-          <p class="section-desc">一些关于技术、设计和生活的记录。</p>
-        </div>
-
-        <div class="blog-grid">
-          <article class="blog-card" data-delay="0">
-            <div class="card-tag">技术</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 5 月 20 日</time>
-              <h3 class="card-title">
-                用 CSS Container Queries 构建真正 responsive 的组件
-              </h3>
-              <p class="card-excerpt">
-                Container Queries
-                让我们终于可以基于容器尺寸而非视口来调整样式。这篇文章聊聊实际项目中的应用和踩坑记录。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-              <div class="card-links">
-                <a href="#" title="微信公众号" class="card-platform wechat"
-                  >💬</a
-                >
-                <a href="#" title="知乎" class="card-platform">📝</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card" data-delay="1">
-            <div class="card-tag">设计</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 5 月 12 日</time>
-              <h3 class="card-title">
-                设计系统的「少即是多」—— 聊聊约束的价值
-              </h3>
-              <p class="card-excerpt">
-                设计系统不是越丰富越好，合理的约束反而能带来更好的一致性和开发体验。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-            </div>
-          </article>
-
-          <article class="blog-card" data-delay="2">
-            <div class="card-tag">生活</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 5 月 5 日</time>
-              <h3 class="card-title">京都散步指南：在寺庙之间寻找安静</h3>
-              <p class="card-excerpt">
-                一条避开游客的散步路线，串联起几个不那么出名但很美的寺庙和庭院。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-            </div>
-          </article>
-
-          <article class="blog-card" data-delay="0">
-            <div class="card-tag">技术</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 4 月 28 日</time>
-              <h3 class="card-title">TypeScript 5.8 新特性速览</h3>
-              <p class="card-excerpt">
-                每条新特性一句话总结 + 可运行示例，快速跟上 TS 更新节奏。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-            </div>
-          </article>
-
-          <article class="blog-card" data-delay="1">
-            <div class="card-tag">设计</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 4 月 20 日</time>
-              <h3 class="card-title">Figma 插件开发入门：从零到上架</h3>
-              <p class="card-excerpt">
-                一个设计师写插件的完整经历，包括技术选型、API
-                坑点、以及审核注意事项。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-            </div>
-          </article>
-
-          <article class="blog-card" data-delay="2">
-            <div class="card-tag">生活</div>
-            <div class="card-body">
-              <time class="card-date">2026 年 4 月 15 日</time>
-              <h3 class="card-title">最近在听的几张专辑</h3>
-              <p class="card-excerpt">
-                一个不定期更新的听歌记录，这次是电子和爵士为主。
-              </p>
-              <a href="#" class="card-link">阅读全文 →</a>
-            </div>
-          </article>
-        </div>
-
-        <div class="section-footer">
-          <a href="#" class="btn btn-outline">查看更多 →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== ABOUT ========== -->
-    <section class="section section-alt" id="about">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-image" data-delay="0">
-            <img class="about-avatar" src="images/me.jpg" alt="头像" />
-          </div>
-          <div class="about-text" data-delay="1">
-            <span class="section-label">ABOUT</span>
-            <h2 class="section-title">关于我</h2>
-            <p>
-              我是熊镜上羽，一位正在不断努力跟进智能体时代步伐的追随者。目前在大学学习。
-            </p>
-            <p>
-              这个博客记录我的一些想法和学习笔记，希望能对你有所启发。如果有什么想聊的，欢迎给我留言。
-            </p>
-            <div class="about-contact">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <a href="mailto:bigbearxiong@foxmail.com"
-                >bigbearxiong@foxmail.com</a
-              >
-            </div>
-            <div class="about-skills">
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">LaTeX</span>
-              <span class="skill-tag">智能体</span>
-              <span class="skill-tag">览尽世间景</span>
-              <span class="skill-tag">未来</span>
-              <span class="skill-tag">保持思考</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== CONTACT ========== -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-card">
-          <div class="contact-content">
-            <h2 class="contact-title">保持联系</h2>
-            <p class="contact-desc">
-              如果我的文章对你有帮助，或者只是想打个招呼，欢迎发邮件给我。
-            </p>
-            <a href="mailto:bigbearxiong@foxmail.com" class="contact-email"
-              >bigbearxiong@foxmail.com</a
-            >
-            <form class="contact-form" id="contactForm">
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-input"
-                  placeholder="你的邮箱地址"
-                  required
-                />
-                <button type="submit" class="btn btn-primary form-btn">
-                  订阅
-                </button>
-              </div>
-              <p class="form-note">不定期发送，不会 spam，随时可退订。</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
-      <div class="container footer-content">
-        <p class="footer-copy">© 2026 熊镜上羽 · 一次与AI Agent的第一次合作</p>
-        <div class="footer-links">
-          <a href="https://github.com/shangyu-xiong" target="_blank">GitHub</a>
-          <a href="https://x.com/shangyuxiong" target="_blank">Twitter / X</a>
-          <a href="https://space.bilibili.com/167339425" target="_blank"
-            >Bilibili</a
-          >
-          <a href="#" id="wechatFooterBtn">公众号</a>
-          <a href="#">RSS</a>
-        </div>
-      </div>
-    </footer>
-
-    <!-- ========== WECHAT MODAL ========== -->
-    <div class="modal-overlay" id="wechatModal">
-      <div class="modal-content">
-        <button class="modal-close" id="wechatModalClose">&times;</button>
-        <h3 class="modal-title">上羽的树屋</h3>
-        <p class="modal-desc">微信扫码关注公众号</p>
-        <img class="modal-qr" src="images/wxQRcode.jpg" alt="公众号二维码" />
+            <path d="M20.5 14.6A8.6 8.6 0 019.4 3.5a8.6 8.6 0 1011.1 11.1z" />
+          </svg>
+        </button>
       </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <main class="main">
+      <!-- ========== 1. 开始 ========== -->
+      <section class="hero" id="home">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            class="hero-photo"
+            src="images/hero.webp"
+            srcset="images/hero-sm.webp 900w, images/hero.webp 1710w"
+            sizes="100vw"
+            width="1710"
+            height="1279"
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span class="hero-scrim"></span>
+        </div>
+
+        <div class="hero-inner">
+          <p class="hero-wordmark">熊镜上羽</p>
+          <h1 class="hero-title">NeverSettle</h1>
+          <p class="hero-sub">
+            面对不断进化的 AI Agent，<br />被替代，还是掌控它。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">看项目</a>
+            <a class="btn btn-ghost" href="#travel"
+              >看旅行 <span class="chev">›</span></a
+            >
+          </div>
+        </div>
+
+        <a class="scroll-hint" href="#about" aria-label="继续往下">
+          <span class="scroll-hint-dot"></span>
+        </a>
+      </section>
+
+      <!-- ========== 2. 关于 ========== -->
+      <section class="section" id="about">
+        <div class="wrap">
+          <p class="eyebrow reveal">About</p>
+          <h2 class="section-title reveal">关于我</h2>
+
+          <div class="about-grid">
+            <figure class="about-photo reveal">
+              <img
+                src="images/me.jpg"
+                alt="熊镜上羽的头像"
+                width="520"
+                height="520"
+              />
+            </figure>
+
+            <div class="about-body">
+              <p class="lead reveal">
+                我是熊镜上羽，一位正在不断努力跟进智能体时代步伐的追随者。目前在大学学习。
+              </p>
+              <p class="reveal">
+                这个博客记录我的一些想法和学习笔记，希望能对你有所启发。如果有什么想聊的，欢迎给我留言。
+              </p>
+
+              <ul class="chips reveal">
+                <li class="chip">智能体</li>
+                <li class="chip">览尽世间景</li>
+                <li class="chip">保持思考</li>
+              </ul>
+
+              <a
+                class="link-arrow reveal"
+                href="mailto:bigbearxiong@foxmail.com"
+              >
+                bigbearxiong@foxmail.com <span class="chev">›</span>
+              </a>
+
+              <!-- 之后扩充：可以在这里补时间线 / 现在正在做什么 / 读过的东西 -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 3. 项目 ========== -->
+      <section class="section section-alt" id="projects">
+        <div class="wrap">
+          <p class="eyebrow reveal">Projects</p>
+          <h2 class="section-title reveal">我在做的东西</h2>
+          <p class="section-sub reveal">列表实时同步自 GitHub</p>
+
+          <div class="projects-grid" id="projectsGrid">
+            <p class="loading">正在从 GitHub 读取…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 4. 文章 ========== -->
+      <section class="section" id="writing">
+        <div class="wrap">
+          <p class="eyebrow reveal">Writing</p>
+          <h2 class="section-title reveal">写过的公开文章</h2>
+
+          <div class="empty-state reveal">
+            <span class="empty-pulse" aria-hidden="true"></span>
+            <p class="empty-title">文章灵感正在积攒中</p>
+            <p class="empty-sub">
+              还没到拿得出手的时候。想先看我在折腾什么，可以翻
+              <a href="#projects">项目</a> 或者 <a href="#travel">旅行相册</a>。
+            </p>
+          </div>
+
+          <!--
+            ===== 新增文章模板 =====
+            写好后把下面这段取消注释、复制一份填内容即可，结构不用改。
+            data-delay 控制进场顺序：0 → 1 → 2 → 0 → 1 → 2…
+
+            <article class="post-card" data-delay="0">
+              <div class="post-tag">技术</div>
+              <div class="post-body">
+                <time class="post-date">2026 年 9 月 20 日</time>
+                <h3 class="post-title">文章标题</h3>
+                <p class="post-excerpt">一句话摘要，说明这篇讲了什么。</p>
+                <a class="link-arrow" href="#">阅读全文 <span class="chev">›</span></a>
+                <div class="post-platforms">
+                  <a href="#" title="微信公众号">公众号</a>
+                  <a href="#" title="知乎">知乎</a>
+                </div>
+              </div>
+            </article>
+
+            如果文章发在多个平台，在 .post-platforms 里补链接即可。
+          -->
+        </div>
+      </section>
+
+      <!-- ========== 5. 旅行 ========== -->
+      <section class="section section-alt" id="travel">
+        <div class="wrap">
+          <p class="eyebrow reveal">Travel</p>
+          <h2 class="section-title reveal">去过的地方</h2>
+          <p class="section-sub reveal">
+            一次旅行、一个时间，就是一本相册。
+            用左右按钮翻页，点照片可以放大看原图。
+          </p>
+
+          <div class="albums" id="timeline">
+            <!-- 由 js/main.js 依据 data/travel-data.js 渲染 -->
+          </div>
+
+          <p class="travel-more reveal">
+            更多随手拍在
+            <a
+              href="https://www.xiaohongshu.com/user/profile/66f176d3000000001d03160c"
+              target="_blank"
+              rel="noopener"
+              >小红书</a
+            >。
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== 6. 联系 ========== -->
+      <section class="section contact" id="contact">
+        <div class="contact-media" aria-hidden="true">
+          <img
+            class="contact-photo"
+            src="images/back.webp"
+            srcset="images/back-sm.webp 900w, images/back.webp 1777w"
+            sizes="100vw"
+            width="1777"
+            height="1280"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="contact-scrim"></span>
+        </div>
+
+        <div class="wrap contact-wrap">
+          <p class="eyebrow reveal">Contact</p>
+          <h2 class="section-title reveal">随时聊两句</h2>
+          <p class="section-sub reveal">
+            不管是文章里的问题、项目上的想法，还是单纯打个招呼，邮件我都会看。
+          </p>
+
+          <a
+            class="btn btn-primary btn-lg reveal"
+            href="mailto:bigbearxiong@foxmail.com"
+          >
+            bigbearxiong@foxmail.com
+          </a>
+
+          <div class="socials reveal">
+            <a
+              href="https://github.com/shangyu-xiong"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+            <a
+              href="https://space.bilibili.com/167339425"
+              target="_blank"
+              rel="noopener"
+              >Bilibili</a
+            >
+            <a href="https://x.com/shangyuxiong" target="_blank" rel="noopener"
+              >X / Twitter</a
+            >
+            <a
+              href="https://www.xiaohongshu.com/user/profile/66f176d3000000001d03160c"
+              target="_blank"
+              rel="noopener"
+              >小红书</a
+            >
+            <button class="linkish" id="wechatBtn" type="button">
+              微信公众号
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="wrap footer-inner">
+          <p>© 2026 熊镜上羽</p>
+          <p class="footer-note">纯 HTML / CSS / JS，托管在 GitHub Pages</p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ========== 大图查看 ========== -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="照片查看"
+      hidden
+    >
+      <button class="lb-btn lb-close" id="lbClose" aria-label="关闭（Esc）">
+        ✕
+      </button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张（←）">
+        ‹
+      </button>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="下一张（→）">
+        ›
+      </button>
+      <figure class="lb-figure">
+        <img id="lbImg" src="" alt="" />
+        <figcaption>
+          <span class="lb-caption" id="lbCaption"></span>
+          <span class="lb-counter" id="lbCounter"></span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- ========== 公众号二维码 ========== -->
+    <div
+      class="modal"
+      id="wechatModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="微信公众号"
+      hidden
+    >
+      <button class="modal-close" id="wechatModalClose" aria-label="关闭">
+        ✕
+      </button>
+      <h3 class="modal-title">上羽的树屋</h3>
+      <p class="modal-desc">微信扫码关注公众号</p>
+      <img
+        class="modal-qr"
+        src="images/wxQRcode.jpg"
+        alt="公众号二维码"
+        width="220"
+        height="220"
+      />
+    </div>
   </body>
 </html>
