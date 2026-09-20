@@ -1,37 +1,34 @@
 # 熊镜上羽 · 博客操作指南
 
-## 在线编辑（随时随地）
+## 更新网站（日常流程）
 
-### 方式一：GitHub 网页编辑器（推荐）
+> **统一走本地 git 推送。** GitHub 网页端的 *Upload files* 会整体覆盖仓库文件，并让网页提交与本地提交分叉，请勿再用（见文末「踩坑记录」）。
 
-1. 打开 [github.com/shangyu-xiong/blog](https://github.com/shangyu-xiong/blog)
-2. 按键盘 **`.`**（句点键）→ 自动打开网页版 VS Code
-3. 编辑文件后：
-   - 左侧点击 **Source Control** 图标（Y 形分叉，或用快捷键 `Ctrl+Shift+G`）
-   - 输入修改说明（如"新增一篇文章"）
-   - 点击 **Commit & Push**
-4. 等 1-2 分钟，网站自动更新
+### 方式一：VS Code 图形界面（推荐）
 
-### 方式二：本地编辑再推送
+1. 用 VS Code 打开 `E:\VScode work\html\blog`
+2. 左侧点 **Source Control**（快捷键 `Ctrl+Shift+G`）查看改动
+3. 填写修改说明 → **Commit** → **Sync Changes**（等同 push）
+4. 等 1-2 分钟，网站自动更新：https://shangyu-xiong.github.io/blog/
+
+### 方式二：终端命令
 
 ```powershell
-# 打开终端，进入博客目录
-cd "E:\VScode work\html\blog"
+cd "E:\VScode work\html\blog"    # 进入博客目录
 
-# 确认修改了哪些文件
-git status
-
-# 暂存所有修改
-git add -A
-
-# 提交修改
-git commit -m "这次改了什么"
-
-# 推送到 GitHub（网站自动更新）
-git push
+git status                       # 看看改了什么
+git add -A                       # 暂存所有修改
+git commit -m "这次改了什么"       # 提交
+git push                         # 推送到 GitHub（网站自动更新）
 ```
 
-> 如果 `git push` 网络连接失败，多试几次，或用方式一网页版推送。
+> 首次 push 会弹出 GitHub 登录窗口，登录一次后由 Windows 凭据管理器记住，之后无需重复登录。
+> 本机已配置代理 `127.0.0.1:7897`；若 push 超时，重试即可。
+
+### 应急：没有电脑时用网页端
+
+在 GitHub 网页按 **`.`**（句点键）打开网页版 VS Code，编辑后 **Commit & Push**。
+**回到本地后必须先执行 `git pull --rebase`** 再继续修改，否则会再次分叉。
 
 ---
 
@@ -106,6 +103,7 @@ E:\VScode work\html\blog\
 │   ├── me.jpg         # 个人头像
 │   └── wxQRcode.jpg   # 公众号二维码
 ├── GUIDE.md           # 本操作指南
+├── CLAUDE.md          # 仓库协作说明
 └── .gitignore
 ```
 
@@ -119,3 +117,18 @@ E:\VScode work\html\blog\
 - 本地路径：`E:\VScode work\html\blog`
 - 技术栈：纯 HTML + CSS + JavaScript（无框架）
 - 部署方式：GitHub Pages（推送到 main 分支自动部署）
+
+---
+
+## 踩坑记录
+
+### 2026-05-24：网页端 Upload files 导致本地/远程分叉
+
+用 GitHub 网页上传文件后出现的两个问题：
+
+1. **旧文件覆盖新文件** —— 仓库里较新的 `GUIDE.md` 被上传的旧版覆盖（丢失本地路径、社交链接表、`images/` 说明等内容）；
+2. **历史分叉** —— 网页提交与本地提交各自领先对方 1 个提交（本地 ahead 1 / behind 1），此后 `git push` 直接被拒绝（non-fast-forward）。
+
+修复方式：本地执行 `git rebase origin/main`（本地那个提交的内容其实已在上游，会被自动跳过），解决冲突后再 `git push`。
+
+**结论：所有更新统一走本地 git（`git add -A` → `git commit` → `git push`），不要再用网页端 Upload files 上传整份文件。**
